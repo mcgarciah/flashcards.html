@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        .card {
+            font-family: 'Roboto', sans-serif;
+            width: 80vw;
+            height: 60vh;
+            line-height: 60vh;
+            color: white;
+            text-align: center;
+            font-size: 3vw;
+            background-color: #00008B;
+            cursor: pointer;
+            transition: background-color 0.5s;
+            padding: 2vw;
+            box-sizing: border-box;
+            display: none;
+            margin: 0 auto;
+        }
+
+        .start-button {
+            font-family: 'Roboto', sans-serif;
+            padding: 1vw 2vw;
+            background-color: #00008B;
+            color: white;
+            cursor: pointer;
+            font-size: 2vw;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<button id="startButton" class="start-button" onclick="startFlashcards()">Start Learning</button>
+<div id="card" class="card" onclick="flipCard()"></div>
+
+<script>
+    var card = document.getElementById('card');
+    var startButton = document.getElementById('startButton');
+    var flipped = false;
+
+    var flashcards = [
+        { question: "What is the Spanish translation for 'Test'?", answer: "Prueba" },
+        { question: "Translate to Spanish: 'The QA engineer must test the application to ensure it is accurate.'", answer: "El ingeniero de QA debe probar la aplicación para asegurarse de que es precisa." },
+        { question: "What is the Spanish translation for 'Verify'?", answer: "Verificar" },
+        { question: "Translate to Spanish: 'The QA engineer needs to verify the compliance of the code.'", answer: "El ingeniero de QA necesita verificar el cumplimiento del código." },
+        { question: "What is the Spanish translation for 'Analyze'?", answer: "Analizar" },
+        { question: "Translate to Spanish: 'The QA engineer should analyze the defect in the automated system.'", answer: "El ingeniero de QA debería analizar el defecto en el sistema automatizado." },
+        { question: "What is the Spanish translation for 'Debug'?", answer: "Depurar" },
+        { question: "Translate to Spanish: 'The QA engineer has to debug the agile application.'", answer: "El ingeniero de QA tiene que depurar la aplicación ágil." },
+        { question: "What is the Spanish translation for 'Document'?", answer: "Documentar" },
+        { question: "Translate to Spanish: 'The QA engineer is responsible for documenting the bug in the code.'", answer: "El ingeniero de QA es responsable de documentar el error en el código." },
+        { question: "What is the Spanish translation for 'Automate'?", answer: "Automatizar" },
+    ];
+
+    var currentFlashcard = 0;
+
+    function startFlashcards() {
+        startButton.style.display = 'none';
+        card.style.display = 'block';
+        card.innerHTML = flashcards[currentFlashcard].question;
+    }
+
+    function flipCard() {
+        if (flipped) {
+            currentFlashcard = (currentFlashcard + 1) % flashcards.length;
+            card.innerHTML = flashcards[currentFlashcard].question;
+            card.classList.remove('flipped');
+        } else {
+            card.innerHTML = flashcards[currentFlashcard].answer;
+            card.classList.add('flipped');
+        }
+
+        flipped = !flipped;
+    }
+</script>
+
+</body>
+</html>
